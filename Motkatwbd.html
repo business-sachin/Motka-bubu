@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Little World 💗</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;800&display=swap">
+<style>
+:root{color-scheme:light;--bg:#fff8f2;--bg2:#ffe4ea;--peach:#ffd9c4;--card:rgba(255,255,255,.72);--ink:#5a1d33;--soft:#8a4a60;--rose:#e0446a;--line:rgba(224,68,106,.18);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#2a1220;--bg2:#3a1730;--peach:#4a2030;--card:rgba(70,30,52,.7);--ink:#ffe9ef;--soft:#f3b8c9;--rose:#ff7a9c;--line:rgba(255,122,156,.25)}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#2a1220;--bg2:#3a1730;--peach:#4a2030;--card:rgba(70,30,52,.7);--ink:#ffe9ef;--soft:#f3b8c9;--rose:#ff7a9c;--line:rgba(255,122,156,.25)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Nunito,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Caveat,cursive;margin:0;line-height:1.1}h2{font-size:clamp(34px,8vw,54px)}
+section{padding:72px 18px;max-width:980px;margin:auto;text-align:center;position:relative}
+.sub{color:var(--soft);max-width:34em;margin:8px auto 28px}
+button,select{font:inherit;color:inherit}
+.btn{background:var(--rose);color:#fff;border:0;border-radius:99px;padding:12px 22px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(224,68,106,.32);transition:transform .15s}
+.btn:active{transform:scale(.95)}.btn.alt{background:var(--card);color:var(--ink);box-shadow:0 0 0 1.5px var(--line)}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+.glass{background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:0 14px 40px rgba(224,68,106,.12)}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0}
+#intro{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;background:radial-gradient(circle at 50% 45%,var(--peach),var(--bg2) 60%,var(--bg));transition:opacity .9s,visibility .9s}
+#intro.gone{opacity:0;visibility:hidden}
+#intro h1{font-size:clamp(34px,9vw,60px)}
+#heart{width:min(62vw,260px);cursor:grab;touch-action:none;filter:drop-shadow(0 0 40px rgba(255,80,130,.6));animation:beat 1.6s infinite;transition:transform .5s,opacity .6s}
+#heart.pop{transform:scale(1.7);opacity:0;animation:none}
+@keyframes beat{50%{transform:scale(1.07)}}
+#reveal{opacity:0;transition:opacity 1s;min-height:140px}#reveal.on{opacity:1}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:200;width:100%;height:100%}
+#snd{position:fixed;right:14px;top:calc(12px + env(safe-area-inset-top,0px));z-index:60;border-radius:50%;width:44px;height:44px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:20px}
+#main{display:none}#main.on{display:block}
+.hero{padding-top:90px}.tag{font-family:Caveat;font-size:26px;color:var(--rose)}
+#tree{width:min(100%,430px);aspect-ratio:1/1.08;touch-action:manipulation}
+.count{font-weight:800;color:var(--rose)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 18px;margin-top:20px;padding:10px}
+.pol{background:#fffdf9;color:#5a1d33;padding:10px 10px 14px;border-radius:6px;box-shadow:0 12px 28px rgba(90,29,51,.2);cursor:pointer;border:0;transform:rotate(var(--r));transition:transform .25s}
+.pol:hover{transform:rotate(0) scale(1.04)}.pol .ph{aspect-ratio:1;background:repeating-linear-gradient(45deg,#ffe4ea,#ffe4ea 10px,#ffd9c4 10px,#ffd9c4 20px);display:grid;place-items:center;font-size:13px;overflow:hidden;color:#8a4a60}
+.pol img{width:100%;height:100%;object-fit:cover}.pol p{font-family:Caveat;font-size:20px;margin:8px 0 0;line-height:1.1}
+.env{width:min(100%,520px);margin:auto;cursor:pointer;border:0;background:none;display:block}
+.env .flap{font-size:84px;transition:transform .5s}.env.open .flap{transform:scale(1.2) rotate(-8deg)}
+.letter{max-height:0;overflow:hidden;opacity:0;transition:max-height 1.4s,opacity 1s;text-align:left;background:#fffdf9;color:#5a1d33;border-radius:14px;box-shadow:0 14px 40px rgba(90,29,51,.2);margin-top:10px;font-family:Caveat;font-size:23px;line-height:1.35}
+.letter.open{max-height:1400px;opacity:1}.letter div{padding:26px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:thin}
+.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:8px 16px;cursor:pointer;font-weight:700}
+.tabs button[aria-selected=true]{background:var(--rose);color:#fff}
+.cap{min-height:3.4em;font-weight:700;color:var(--soft)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:12px}
+.card{position:relative;border:1px solid var(--line);background:var(--card);border-radius:22px;padding:16px 8px;cursor:pointer;font-weight:700}
+.card .e{display:block;font-size:44px;animation:bob 2.4s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes bob{50%{transform:translateY(-6px) rotate(5deg)}}
+.card .w{position:absolute;top:6px;right:10px;font-size:18px}
+.meter{font-size:22px;letter-spacing:2px}
+select{width:100%;padding:10px;border-radius:14px;border:1px solid var(--line);background:var(--card)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;text-align:left;font-weight:700}
+.out{white-space:pre-line;text-align:left;margin-top:16px;font-weight:600}
+dialog{border:0;border-radius:26px;padding:24px;max-width:min(92vw,460px);width:100%;background:var(--bg);color:var(--ink);box-shadow:0 20px 70px rgba(0,0,0,.35);text-align:center}
+dialog::backdrop{background:rgba(90,20,40,.55)}dialog img{max-width:100%;max-height:60vh;border-radius:10px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);opacity:0;background:var(--rose);color:#fff;padding:12px 18px;border-radius:18px;z-index:300;max-width:90vw;transition:.4s;font-weight:700;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.hug{font-size:90px;display:inline-block}.hug.go{animation:hug 1.2s}
+@keyframes hug{40%{transform:scale(1.5)}70%{transform:scale(1.2) rotate(8deg)}}
+#fin{background:linear-gradient(var(--bg),var(--peach));max-width:none;padding:90px 18px 120px}
+#fin .in{max-width:620px;margin:auto;text-align:left}
+.glow{font-size:110px;text-align:center;filter:drop-shadow(0 0 30px #ff5e8e);animation:beat 1.8s infinite}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01s!important;scroll-behavior:auto!important}}
+</style></head><body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<button id="snd" aria-label="Toggle soft music" aria-pressed="false">🔇</button>
+
+<div id="intro">
+ <h1>someone made this, just for you</h1>
+ <svg id="heart" viewBox="0 0 100 92" role="button" tabindex="0" aria-label="Pull and let go to open">
+  <defs><radialGradient id="g" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#ffd0df"/><stop offset=".35" stop-color="#ff6b97"/><stop offset="1" stop-color="#c81e55"/></radialGradient></defs>
+  <path d="M50 88C20 64 3 46 3 26 3 12 14 3 27 3c10 0 18 5 23 13C55 8 63 3 73 3c13 0 24 9 24 23 0 20-17 38-47 62z" fill="url(#g)"/>
+  <ellipse cx="29" cy="22" rx="11" ry="6" fill="#fff" opacity=".55" transform="rotate(-30 29 22)"/></svg>
+ <div class="tag">Pull &amp; let go 💗</div>
+ <div id="reveal" aria-live="polite"><p style="font-family:Caveat;font-size:30px;margin:0 0 12px" data-e="hey">Hey Shehnaaz, meri jaan, this little world is only for you. 💕</p><button class="btn" id="enter">Enter Our Little World ✨</button></div>
+ <small style="color:var(--soft)" data-e="tiny">Tumhare liye, meri Shehnaaz… tumhara Motka Babu. ❤️</small>
+</div>
+
+<main id="main">
+<section class="hero"><div class="tag">Made with love by Motka Babu ❤️</div><h2>Our Little World 💗</h2>
+<p class="sub">Made especially for My Shehnaaz 🥹💖<br>Infinite pyaar, cute foodie love, sweet memories &amp; playful teasing.</p>
+<canvas id="tree" aria-label="A heart-shaped tree made of hundreds of tiny hearts"></canvas>
+<h3 style="font-size:34px" data-e="t1">Made for you, by hand.</h3>
+<p style="font-family:Caveat;font-size:30px;color:var(--rose);margin:4px" data-e="t2">I LOVE YOU, SHEHNAAZ ❤️</p>
+<p class="sub" style="margin-top:0" data-e="t3">And every ordinary day with you is special.</p>
+<p><b>Tap anywhere on the tree to keep growing our love 🌱</b><br><span class="count">Our love is growing: <span id="cnt">128</span> hearts 💗</span></p>
+<p class="sub" data-e="t4">Har ek heart mein thoda sa mera pyaar, aur poore dil mein meri Shehnaaz. — Motka Babu 💗</p></section>
+
+<section id="mem"><h2>Our Little Moments 📸</h2><p class="sub">Every picture holds a little piece of my heart.<br><small>Tap a frame to add your own photo from your device. It stays on this device only.</small></p><div class="gal" id="gal"></div></section>
+
+<section><h2>Infinite Pyaar 💌</h2><p class="sub">Tap the envelope.</p>
+<button class="env" id="env" aria-expanded="false" aria-controls="ltr"><span class="flap">💌</span></button>
+<div class="letter" id="ltr"><div data-e="letter"><p>Dear Shehnaaz, ❤️</p><p>You are my favourite part of so many ordinary days. Sometimes the smallest moments with you become the memories I treasure most.</p><p>I love your smile, your cute little habits, the way we talk, and even our silly arguments. I want our little world to be full of laughter, understanding, care and countless beautiful memories.</p><p>You are special to me in ways that words cannot completely explain.</p><p>Infinite pyaar, endless memories, and a little more love for you every single day.</p><p>Tum meri favourite person ho, meri jaan. Aur haan, tumhara Motka Babu tumhe bahut saara pyaar bhej raha hai. 🥹💗</p><p>Forever your Motka Babu. ❤️ <span class="glow" style="font-size:30px;display:inline-block">💗</span></p></div></div>
+<div class="row"><button class="btn" id="kiss">Send a Little Kiss 💋</button></div></section>
+
+<section id="food"><h2>Shehnaaz’s Foodie World 🍕🍟</h2><p class="sub">Pyaar unlimited hai, par tumhari bhookh bhi unlimited hai! 😂❤️</p>
+<div class="row"><button class="btn" id="feed">Feed My Motka 🥺</button><button class="btn" id="today">What Should We Eat Today? 🎲</button><button class="btn" id="menu">Choose Our Date Menu 🍽️</button><button class="btn alt" id="surp">Surprise Me 🎁</button></div>
+<p class="glass" style="padding:12px">Foodie Love Meter <span class="meter" id="meter"></span><br><small>Open food cards to fill it with hearts.</small></p>
+<div class="tabs" role="tablist" id="tabs"></div><p class="cap" id="cap" aria-live="polite"></p><div class="grid" id="grid"></div>
+<p style="margin-top:20px"><b>My wish list ❤️:</b> <span id="wish">Tap a dish and add it here.</span></p>
+<h3 style="font-size:36px;margin-top:34px">Roast Me, Foodie Queen 😂</h3><p class="glass cap" id="roast" style="min-height:4em">Press the button, if you dare…</p><button class="btn" id="roastb">Roast Me, Foodie Queen 😂</button>
+<small style="display:block;margin-top:14px;color:var(--soft)">Just for fun: no real ordering, payments or delivery here.</small></section>
+
+<section><h2>Plan Our Next Little Date 💌</h2><div class="glass"><div class="form" id="form"></div><div class="row"><button class="btn" id="plan">Make Our Date Plan</button></div><div class="out" id="planout" aria-live="polite"></div><div class="row" id="planbtn" hidden><button class="btn alt" id="copy">Copy Plan</button><button class="btn" id="save">Save Our Date Plan</button></div></div></section>
+
+<section><h2>Little Surprises 🎁</h2><div class="row"><button class="btn" id="hug">Tap for a Hug 🫂</button><button class="btn" id="smile">Send Me a Smile 😊</button><button class="btn" id="secret">One More Secret 🤫</button></div><div class="hug" id="hugi" aria-hidden="true">🫂</div>
+<div class="glass" style="margin-top:22px"><h3 style="font-size:32px">How Well Do You Know Our Little World?</h3><div id="quiz"></div></div></section>
+
+<section id="fin"><div class="glow">💗</div><div class="in"><h2 style="text-align:center">Before You Go, One Little Thing… 💗</h2><div data-e="final"><p>Out of all the places I could be, some of my happiest moments are the ones where I get to share a little piece of life with you.</p><p>Thank you for being a part of my story, Shehnaaz.</p><p>No fancy gift can replace the little moments, the laughter, the conversations and the memories that make our world ours.</p><p>Infinite pyaar, meri jaan. ❤️</p><p>Tumhari smile meri favourite hai, tumhari khushi mere liye special hai, aur tum hamesha meri little world ka important part rahogi.</p><p>Lots of love, hugs and kisses from your Motka Babu. 🥹💗</p></div><div class="row"><button class="btn" id="last">Give Me One Last Heart 💗</button><button class="btn alt" id="replay">Replay Our Little World ✨</button></div></div></section>
+</main>
+<dialog id="dlg"><div id="dc"></div><div class="row"><button class="btn alt" onclick="dlg.close()">Close</button></div></dialog>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches,R=a=>a[Math.random()*a.length|0];
+const st={get(k,d){try{return JSON.parse(localStorage.getItem('olw_'+k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem('olw_'+k,JSON.stringify(v))}catch(e){}}};
+/* ---------- editable content ---------- */
+const FOOD=[
+["Pizza","🍕",["Margherita Pizza","Cheese Burst Pizza","Farmhouse Pizza","Paneer Tikka Pizza","Extra Cheese Pizza"],["Pizza ka last slice mujhe bhi milega ya saara pyaar ke naam pe tum hi kha jaogi? 😂","Cheese pull tumhara, dil mera. 🧀❤️","Tum aur pizza saamne ho toh meri competition hi khatam.","Motka Babu ka pyaar bhi extra cheese jaisa unlimited hai, meri Shehnaaz. 🤭💗"]],
+["Burgers","🍔",["Classic Veg Burger","Crispy Paneer Burger","Cheese Burger","Double Patty Burger","Loaded Burger"],["Burger ko itna pyaar mat do, baby. Thoda mere liye bhi bacha lo. 😂","Ek bite tumhari, ek bite meri… lekin tumhari bite hamesha badi kyun hoti hai? 👀","Burger share karogi ya relationship test lena padega? 🤣","Waise Motka Babu ko burger se zyada apni Shehnaaz ki smile pasand hai. ❤️"]],
+["Momos","🥟",["Steamed Veg Momos","Fried Momos","Tandoori Momos","Cheese Momos","Spicy Momos"],["Momos ke liye tumhari loyalty dekh ke lagta hai main second priority hoon. 😭😂","Ek plate momos aur tumhari smile — perfect date.","Red chutney sambhal ke, baby. Mujhe hospital date nahi chahiye. 🌶️🤣","Motka Babu momos khilayega, bas apni cute si smile dena. 🥹❤️"]],
+["Street Food","🌶️",["Pani Puri / Golgappa","Sev Puri","Dahi Puri","Pav Bhaji","Vada Pav","Samosa","Chole Bhature","Dosa","Idli Sambhar","Chaat"],["Pani puri khaate waqt tumhara happiness level alag hi hota hai. 😂","Bas ek plate? Ye jhooth tum khud bhi believe karti ho kya? 🤭","Vada pav date bhi chalegi, bas company tumhari honi chahiye. ❤️","Shehnaaz ki foodie smile dekhna Motka Babu ka favourite side quest hai. 😂💗"]],
+["Noodles & Chinese","🍜",["Hakka Noodles","Schezwan Noodles","Veg Manchurian","Fried Rice","Spring Rolls","Chilli Paneer"],["Spicy noodles se zyada spicy toh tumhara mood hai. 🌶️😂","Ek bowl noodles, do forks, aur tumhara extra bada share.","Chopsticks se khao ya fork se, meri favourite foodie tum hi ho.","Motka Babu ke saath noodles date? Bas tum haan bol do. 🍜❤️"]],
+["Snacks","🍟",["French Fries","Peri-Peri Fries","Cheese Garlic Bread","Nachos","Popcorn","Sandwich","Grilled Cheese Sandwich","Garlic Bread"],["Fries share karna true love ka ultimate test hai. 🍟😂","Tumhari fries churaunga, phir tumhe mana bhi lunga. 🤭","Main tumhara boyfriend hoon ya official food supplier?","Motka Babu ki fries chura sakti ho, dil toh pehle hi tumhara hai. 💗"]],
+["Desserts","🍰",["Chocolate Cake","Brownies","Chocolate Lava Cake","Ice Cream","Waffles","Pancakes","Donuts","Cupcakes","Gulab Jamun","Rasmalai","Chocolate Fondue"],["Tum meri favourite dessert ho… lekin chocolate cake ko ye baat mat batana. 🍫❤️","Sweet dish tumhari choice, bill mera… lekin ek extra hug compulsory. 😂","Chocolate share karna padega, baby. Pyaar mein sab equal hota hai. 🤭","Motka Babu ki life mein sabse sweet naam Shehnaaz hai. 🥹❤️"]],
+["Drinks & Shakes","🥤",["Chocolate Milkshake","Oreo Shake","Strawberry Shake","Cold Coffee","Iced Chocolate","Mango Shake","Fresh Lime Soda","Mojito","Hot Chocolate"],["Ek sip tumhari, ek sip meri. Romantic bhi aur budget-friendly bhi. 😂","Cold coffee tumhari, neend meri gayab.","Tumhari smile se zyada refreshing kuch nahi. ❤️","Ek shake, do straws, aur meri Shehnaaz ke saath ek cute si date. 🥤💗"]],
+["Ice Cream","🍦",["Chocolate","Vanilla","Strawberry","Butterscotch","Cookies and Cream","Mango","Choco Chip"],["Ice cream melt hone se pehle kha lo, warna tumhari tarah main bhi emotional ho jaunga. 😂","Ek scoop tum, ek scoop main… aur extra scoop tumhare liye, meri Shehnaaz. 💗","Motka Babu ki taraf se unlimited pyaar, aur ice cream mein extra toppings. 🍦❤️"]]];
+const ROAST=["Tumhara pet full hota hai ya sirf food menu change hota hai? 😂","Diet kal se, pizza aaj se. Classic Motka logic. 🤣","Restaurant mein menu tum dekhti ho, par order karne mein 20 minute lagte hain.","Tumhe impress karne ka shortcut mil gaya: good food. ❤️","Tumhara mood off? Chalo kuch tasty khilaata hoon.","Tumhare liye date plan karna easy hai — bas restaurant ka naam bata do. 😂","Mujhe tumhara attention chahiye, aur tumhe extra cheese.","Food share karogi toh pyaar double, nahi karogi toh bhi pyaar double. 🤭","Tum meri cutie ho, lekin fries ki chor bhi ho.","Itna food pyaar dekh ke Zomato bhi tumhe VIP customer bana dega. 😂","Meri Shehnaaz ko food chahiye, aur Motka Babu ko bas uski smile. 💗","Foodie queen ka order complete karna Motka Babu ki duty hai. 😂❤️"];
+const SHARE=["Share karogi? Aadha mera, aadha… bhi mera. 😂","Motka Babu ne request bheji hai: sirf ek bite, please! 🥺","Shehnaaz ne haan bola! Aaj ka din mubarak ho. 🎉","Thik hai, share kar lo. Par last slice ke liye negotiation baaki hai. 🤭"];
+const CAPS=["Mero maya, mero sansar. ❤️","My favourite person.","My kind of happiness.","Just you and me.","A memory I want to keep forever.","Meri Shehnaaz, meri favourite memory. 💗","Motka Babu aur uski jaan ke chhote-chhote moments. 🥹"];
+const SMILES=["Tumhari smile meri favourite notification hai. 😊","Tum hasti ho toh poori duniya thodi aur sundar lagti hai. 💗","Tumhari smile: charging 100%, Motka Babu fully happy. 🔋❤️"];
+const SECRETS=["Psst… Shehnaaz, tumhe pata hai? Tumhara Motka Babu tumhari smile ke liye kuch bhi cute kar sakta hai. 🤭❤️","Secret message unlocked: You are loved more than all the hearts on this screen. 💗","Ek virtual hug tumhare liye, meri jaan. 🫂❤️"];
+const QUIZ=[["Who made this little world for you?",["Motka Babu 💗","A stranger","Zomato"],0],["What is unlimited in Motka Babu’s heart?",["Pyaar ❤️","Last slices","Wi-Fi"],0],["Who is the favourite foodie here?",["Shehnaaz 🍕","The pizza","The waiter"],0]];
+/* ---------- helpers ---------- */
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),3800)};
+const dlg=$('#dlg');const modal=h=>{$('#dc').innerHTML=h;if(!dlg.open)dlg.showModal()};
+/* particles */
+const fx=$('#fx'),fc=fx.getContext('2d');let P=[],run=false;
+const fit=()=>{fx.width=innerWidth*devicePixelRatio;fx.height=innerHeight*devicePixelRatio};fit();addEventListener('resize',fit);
+function burst(x,y,n=40,g=['💗','💖','💕','✨','❤️']){if(rm)n=Math.min(n,8);for(let i=0;i<n;i++){const a=Math.random()*6.28,s=2+Math.random()*6;P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-3,l:1,s:14+Math.random()*18,g:R(g)})}if(!run){run=true;requestAnimationFrame(tick)}}
+function tick(){fc.clearRect(0,0,fx.width,fx.height);const d=devicePixelRatio;P=P.filter(p=>p.l>0);for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.vx*=.985;p.l-=.011;fc.globalAlpha=Math.max(p.l,0);fc.font=p.s*d+'px serif';fc.fillText(p.g,p.x*d,p.y*d)}fc.globalAlpha=1;P.length?requestAnimationFrame(tick):run=false}
+const rain=(g,n=30)=>{for(let i=0;i<n;i++)setTimeout(()=>burst(Math.random()*innerWidth,-10,1,g),i*60);P.forEach(p=>p.vy=0)};
+const center=()=>burst(innerWidth/2,innerHeight/2,70);
+document.addEventListener('click',e=>{if(e.target.closest('.btn,.card,.pol'))burst(e.clientX,e.clientY,8,['💗','✨'])});
+/* editable text persistence not needed: edit the data-e blocks above */
+/* ---------- intro ---------- */
+const h=$('#heart');let sy=null,done=false;
+function open(){if(done)return;done=true;h.classList.add('pop');const r=h.getBoundingClientRect();burst(r.x+r.width/2,r.y+r.height/2,120);setTimeout(()=>$('#reveal').classList.add('on'),700)}
+h.addEventListener('pointerdown',e=>{sy=e.clientY;h.setPointerCapture(e.pointerId);h.style.transform='scaleY(1.15)'});
+h.addEventListener('pointerup',()=>{h.style.transform='';open()});
+h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+$('#enter').onclick=()=>{$('#intro').classList.add('gone');$('#main').classList.add('on');scrollTo(0,0);sizeTree();setTimeout(()=>toast('Welcome, Shehnaaz 💗'),900);setTimeout(()=>toast(SECRETS[0]),45000)};
+/* ---------- sound (opt-in, soft) ---------- */
+let ac,iv;$('#snd').onclick=function(){const on=this.getAttribute('aria-pressed')!=='true';this.setAttribute('aria-pressed',on);this.textContent=on?'🔊':'🔇';
+ if(on){try{ac=new(window.AudioContext||window.webkitAudioContext)();const n=[523,659,784,659,587,698,880,698];let i=0;iv=setInterval(()=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=n[i++%8];g.gain.setValueAtTime(.001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.05,ac.currentTime+.1);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+1.2);o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+1.3)},700)}catch(e){}}else{clearInterval(iv);try{ac.close()}catch(e){}}};
+/* ---------- heart tree ---------- */
+const tc=$('#tree'),tx=tc.getContext('2d');let TH=[],FL=[],count=128,vis=true,TW=0,THt=0;
+function sizeTree(){const r=tc.getBoundingClientRect(),d=devicePixelRatio||1;TW=r.width;THt=r.height;tc.width=TW*d;tc.height=THt*d;tx.setTransform(d,0,0,d,0,0);if(!TH.length)genTree();draw(0)}
+function genTree(){const cols=['#ff5e8e','#ff8fab','#ffb3c6','#ffa07a','#ffd27f','#e0446a'];let t=0;while(TH.length<700&&t++<20000){const x=Math.random()*2.8-1.4,y=Math.random()*2.6-1.3,a=x*x+y*y-1;if(a*a*a-x*x*y*y*y<=0)TH.push({x,y,s:6+Math.random()*9,c:R(cols),p:Math.random()*6.28})}}
+function draw(t){tx.clearRect(0,0,TW,THt);const cx=TW/2,cy=THt*.4,k=TW*.3,n=Math.min(count,TH.length);
+ tx.strokeStyle='#9c5a4a';tx.lineCap='round';tx.lineWidth=TW*.035;tx.beginPath();tx.moveTo(cx,THt*.98);tx.quadraticCurveTo(cx-6,THt*.78,cx,cy+k*.2);tx.stroke();tx.lineWidth=TW*.015;tx.beginPath();tx.moveTo(cx,THt*.75);tx.lineTo(cx-k*.6,cy+k*.35);tx.moveTo(cx,THt*.7);tx.lineTo(cx+k*.6,cy+k*.3);tx.stroke();
+ tx.textAlign='center';tx.textBaseline='middle';const sw=rm?0:1;
+ for(let i=0;i<n;i++){const o=TH[i],z=TW/430;tx.fillStyle=o.c;tx.font=o.s*z+'px serif';tx.fillText('♥',cx+o.x*k+Math.sin(t/900+o.p)*1.5*sw,cy-o.y*k+Math.cos(t/1100+o.p)*1.5*sw)}
+ FL=FL.filter(f=>f.y>-20);for(const f of FL){f.y-=f.v;f.x+=Math.sin(f.y/20+f.p)*.5;tx.globalAlpha=Math.min(1,f.y/(THt*.4));tx.fillStyle=f.c;tx.font=f.s+'px serif';tx.fillText('♥',f.x,f.y)}tx.globalAlpha=1}
+function loop(t){if(vis&&!rm){if(Math.random()<.06)FL.push({x:TW*(.2+Math.random()*.6),y:THt*(.35+Math.random()*.3),v:.4+Math.random()*.6,s:8+Math.random()*8,c:R(['#ff8fab','#ffd27f','#ff5e8e']),p:Math.random()*6});draw(t)}requestAnimationFrame(loop)}
+new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(tc);addEventListener('resize',sizeTree);requestAnimationFrame(loop);
+tc.addEventListener('pointerdown',e=>{count+=6;$('#cnt').textContent=count;const r=tc.getBoundingClientRect();for(let i=0;i<3;i++)FL.push({x:e.clientX-r.x,y:e.clientY-r.y,v:1+Math.random(),s:12,c:R(['#ff5e8e','#ffb3c6']),p:i});if(rm)draw(0);burst(e.clientX,e.clientY,6,['💗'])});
+/* ---------- gallery ---------- */
+CAPS.forEach((c,i)=>{const b=document.createElement('button');b.className='pol';b.style.setProperty('--r',(i%2?1:-1)*(1+i%3*1.4)+'deg');b.innerHTML='<div class="ph">Your photo here 📷</div><p>'+c+'</p>';const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.hidden=true;b.append(inp);
+ inp.onchange=()=>{const f=inp.files[0];if(!f)return;const im=new Image();im.src=URL.createObjectURL(f);im.alt='Shehnaaz and Motka Babu: '+c;b.querySelector('.ph').replaceChildren(im)};
+ b.onclick=e=>{if(e.target===inp)return;const im=b.querySelector('img');im?modal('<img src="'+im.src+'" alt="'+im.alt+'"><p style="font-family:Caveat;font-size:26px">'+c+'</p>'):inp.click()};$('#gal').append(b)});
+/* ---------- letter ---------- */
+$('#env').onclick=function(){const o=$('#ltr').classList.toggle('open');this.classList.toggle('open',o);this.setAttribute('aria-expanded',o);if(o)burst(innerWidth/2,innerHeight/2,40)};
+$('#kiss').onclick=()=>{burst(innerWidth/2,innerHeight/2,50,['💋','💗','😘','💖']);toast('Mwah! 💋 Motka Babu ki taraf se')};
+/* ---------- foodie ---------- */
+const all=FOOD.flatMap(f=>f[2].map((n,i)=>({n,e:f[1],c:f})));let cur=0,seen=new Set(st.get('seen',[])),wish=new Set(st.get('wish',[]));
+const tabs=$('#tabs');FOOD.forEach((f,i)=>{const b=document.createElement('button');b.role='tab';b.textContent=f[1]+' '+f[0];b.onclick=()=>{cur=i;showCat()};tabs.append(b)});
+function meter(){const n=Math.min(10,seen.size);$('#meter').textContent='💗'.repeat(n)+'🤍'.repeat(10-n);if(n===10&&!st.get('m10',0)){st.set('m10',1);toast('Love meter full! Foodie Queen unlocked 👑💗');center()}}
+function wl(){$('#wish').textContent=wish.size?[...wish].join(', '):'Tap a dish and add it here.';st.set('wish',[...wish])}
+function showCat(){[...tabs.children].forEach((b,i)=>b.setAttribute('aria-selected',i===cur));const f=FOOD[cur];$('#cap').textContent=R(f[3]);const g=$('#grid');g.replaceChildren();f[2].forEach((n,i)=>{const b=document.createElement('button');b.className='card';b.style.setProperty('--d',(i*.2)+'s');b.innerHTML='<span class="e">'+f[1]+'</span>'+n+(wish.has(n)?'<span class="w">❤️</span>':'');b.onclick=()=>dish(n,f);g.append(b)})}
+function dish(n,f){seen.add(n);st.set('seen',[...seen]);meter();modal('<div style="font-size:70px">'+f[1]+'</div><h3 style="font-size:36px">'+n+'</h3><p class="cap">'+R(f[3])+'</p><div class="row"><button class="btn" id="aw">'+(wish.has(n)?'Remove from wish list':'Add to wish list ❤️')+'</button><button class="btn alt" id="sh">Share With Motka Babu? 🥺</button></div><p id="shr" aria-live="polite"></p>');
+ $('#aw').onclick=()=>{wish.has(n)?wish.delete(n):wish.add(n);wl();showCat();dlg.close()};$('#sh').onclick=()=>{$('#shr').textContent=R(SHARE)}}
+$('#today').onclick=()=>{const d=R(all);modal('<div style="font-size:80px">'+d.e+'</div><h3 style="font-size:38px">'+d.n+'</h3><p class="cap">'+R(d.c[3])+'</p>');burst(innerWidth/2,innerHeight/2,30,[d.e,'💗'])};
+$('#feed').onclick=()=>{const o=[...all].sort(()=>Math.random()-.5).slice(0,6);modal('<h3 style="font-size:34px">Motka Babu is hungry… 🥺</h3><p>Pick something to feed him!</p><div class="row">'+o.map(d=>'<button class="btn alt fd">'+d.e+' '+d.n+'</button>').join('')+'</div><p id="fr" class="cap" aria-live="polite"></p>');
+ document.querySelectorAll('.fd').forEach(b=>b.onclick=()=>{$('#fr').textContent=R(['Yummm! Motka Babu says thank you, meri Shehnaaz 🥹💗','Arre wah! Ab Motka Babu aur bhi pyaar karega. 😂','Ek bite aur? Please? 🥺','Pet full, dil bhi full. 💗'])+' ('+b.textContent+')'})};
+$('#menu').onclick=()=>{const cat=(...ix)=>ix.flatMap(i=>FOOD[i][2]);const sel=(id,l,a)=>'<label>'+l+'<select id="'+id+'">'+a.map(x=>'<option>'+x+'</option>').join('')+'</select></label>';
+ modal('<h3 style="font-size:34px">Our Date Menu 🍽️</h3><div class="form">'+sel('m1','Starter',cat(5,3))+sel('m2','Main dish',cat(0,1,2,4))+sel('m3','Dessert',cat(6,8))+sel('m4','Drink',cat(7))+'</div><div class="row"><button class="btn" id="mk">Confirm Menu 💗</button></div><p class="out" id="mo"></p>');
+ $('#mk').onclick=()=>{$('#mo').textContent='Menu confirmed! 💗\nStarter: '+$('#m1').value+'\nMain: '+$('#m2').value+'\nDessert: '+$('#m3').value+'\nDrink: '+$('#m4').value+'\nBill: Motka Babu. Last slice: negotiable. 😂';burst(innerWidth/2,innerHeight/2,40)}};
+$('#surp').onclick=()=>{rain(['🍕','🍟','🍔','🍦','🍩','🥟','💗']);toast(R(['Motka Babu ki duniya mein sabse tasty cheez: tum. 💗','Surprise! Aaj ka special: unlimited pyaar. 🍰❤️']))};
+$('#roastb').onclick=()=>{let t;do t=R(ROAST);while(t===$('#roast').textContent&&ROAST.length>1);$('#roast').textContent=t};
+meter();wl();showCat();
+/* ---------- date planner ---------- */
+const opts=[['Food preference','p1',[...FOOD[0][2],...FOOD[1][2],...FOOD[2][2],...FOOD[3][2].slice(0,5),...FOOD[4][2]]],['Sweet treat','p2',[...FOOD[6][2],...FOOD[8][2]]],['Date type','p3',['Indoor','Outdoor']],['Activity','p4',['Movie night','Long conversation']],['Surprise activity','p5',['Sunset walk','Handwritten notes for each other','Dance to our favourite song','Midnight snack run','Motka Babu’s choice']]];
+$('#form').innerHTML=opts.map(o=>'<label>'+o[0]+'<select id="'+o[1]+'">'+o[2].map(x=>'<option>'+x+'</option>').join('')+'</select></label>').join('');
+const lastPlan=st.get('plan','');if(lastPlan){$('#planout').textContent=lastPlan;$('#planbtn').hidden=false}
+$('#plan').onclick=()=>{const v=id=>$('#'+id).value;const t='Date Plan Confirmed! 💗\n\nMenu: '+v('p1')+' + '+v('p2')+'\nSetting: '+v('p3')+' '+(v('p4')==='Movie night'?'movie night with Motka Babu':'long conversation with Motka Babu')+'\nSurprise: '+v('p5')+'\n\nMission: Lots of smiles, unlimited conversations and absolutely no stealing the last slice… unless you ask nicely. 😂❤️';$('#planout').textContent=t;$('#planbtn').hidden=false;burst(innerWidth/2,innerHeight/2,50)};
+$('#save').onclick=()=>{st.set('plan',$('#planout').textContent);toast('Date plan saved on this device 💗')};
+$('#copy').onclick=async()=>{try{await navigator.clipboard.writeText($('#planout').textContent);toast('Plan copied! Send it to Motka Babu 😘')}catch(e){toast('Copy not supported here. Select the text and copy it.')}};
+/* ---------- surprises ---------- */
+$('#hug').onclick=()=>{const e=$('#hugi');e.classList.remove('go');void e.offsetWidth;e.classList.add('go');burst(innerWidth/2,innerHeight/2,40,['🫂','💗']);toast(SECRETS[2])};
+$('#smile').onclick=()=>toast(R(SMILES));let si=0;$('#secret').onclick=()=>{toast(SECRETS[si++%3===0?0:si%2?1:2]);burst(innerWidth/2,innerHeight/2,20)};
+let qi=0,qs=0;function quiz(){const q=$('#quiz');if(qi>=QUIZ.length){q.innerHTML='<p><b>Score: '+qs+'/'+QUIZ.length+'</b> 💗 Perfect, as always.</p><button class="btn" id="qr">Play again</button>';$('#qr').onclick=()=>{qi=qs=0;quiz()};if(qs===QUIZ.length)center();return}
+ const [t,a,c]=QUIZ[qi];q.innerHTML='<p>'+t+'</p><div class="row">'+a.map((x,i)=>'<button class="btn alt" data-i="'+i+'">'+x+'</button>').join('')+'</div>';q.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(+b.dataset.i===c){qs++;toast('Sahi jawab! 💗')}else toast('Hehe, almost! 😂');qi++;quiz()})}quiz();
+/* ---------- finale ---------- */
+$('#last').onclick=()=>{for(let i=0;i<14;i++)setTimeout(()=>burst(Math.random()*innerWidth,Math.random()*innerHeight*.8,40),i*140)};
+$('#replay').onclick=()=>{done=false;h.classList.remove('pop');$('#reveal').classList.remove('on');$('#main').classList.remove('on');$('#intro').classList.remove('gone');scrollTo(0,0)};
+</script></body></html>
